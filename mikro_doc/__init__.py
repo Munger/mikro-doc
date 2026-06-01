@@ -25,6 +25,7 @@
 ## @par Licence: MIT
 
 import argparse
+import importlib.metadata
 import json
 import logging
 import os
@@ -52,6 +53,16 @@ CHECKPOINT_INTERVAL = 50
 CPU_THRESHOLD = 60
 MAX_WORKERS = 256
 INITIAL_WORKERS = 2
+
+try:
+    __version__ = importlib.metadata.version("mikro-doc")
+except importlib.metadata.PackageNotFoundError:
+    try:
+        import tomllib
+        with open(TOOL_DIR.parent / "pyproject.toml", "rb") as f:
+            __version__ = tomllib.load(f)["project"]["version"]
+    except Exception:
+        __version__ = "0.0.0-dev"
 
 log = logging.getLogger("mikro-doc")
 
@@ -1223,7 +1234,7 @@ def build_endpoints_tree(sections):
 def main():
     """Main entry point: parse arguments, discover or load the schema, generate outputs."""
     parser = argparse.ArgumentParser(description="Generate RouterOS API reference docs")
-    parser.add_argument("--version", "-V", action="version", version="mikro-doc 1.0.2")
+    parser.add_argument("--version", "-V", action="version", version=f"mikro-doc {__version__}")
     parser.add_argument("--host", "-H", help="Router hostname/IP")
     parser.add_argument("--user", "-U", help="Router username")
     parser.add_argument("--pass", "-P", dest="password", help="Router password")

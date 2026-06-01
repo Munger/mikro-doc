@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.0.3
+
+- Derive `--version` from package metadata so it can never get out of sync again
+
 ## 1.0.2
 
 - Update header comment to document short-form CLI flags
