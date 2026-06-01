@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.0.2
+
+- Update header comment to document short-form CLI flags
+
 ## 1.0.1
 
 - Fix `--open` flag to use `file://` URL so browser opens the page correctly
