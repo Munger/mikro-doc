@@ -1223,7 +1223,7 @@ def build_endpoints_tree(sections):
 def main():
     """Main entry point: parse arguments, discover or load the schema, generate outputs."""
     parser = argparse.ArgumentParser(description="Generate RouterOS API reference docs")
-    parser.add_argument("--version", "-V", action="version", version="mikro-doc 1.0.1")
+    parser.add_argument("--version", "-V", action="version", version="mikro-doc 1.0.2")
     parser.add_argument("--host", "-H", help="Router hostname/IP")
     parser.add_argument("--user", "-U", help="Router username")
     parser.add_argument("--pass", "-P", dest="password", help="Router password")
