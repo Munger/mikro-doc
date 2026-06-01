@@ -14,10 +14,11 @@
 ## It is for your eyes only. If you passed --store-credentials, the credentials will be stored in plaintext in the
 ## output JSON file for future use. You have been warned.
 ##
-## Usage:  mikro-doc --host H --user U --pass P [--store-credentials] [--output-dir DIR] [--endpoints] [--no-docs]
-##         mikro-doc --schema PATH [--output-dir DIR] [--endpoints] [--no-docs]
-##         mikro-doc PATH [--output-dir DIR] [--endpoints] [--no-docs]
-##         mikro-doc --no-fetch [--host H|--schema PATH] [options]
+## Usage:  mikro-doc -H H -U U -P P [-C] [-O DIR] [-E] [-N] [-Q] [--open]
+##         mikro-doc -S PATH [-O DIR] [-E] [-N] [-Q]
+##         mikro-doc PATH [-O DIR] [-E] [-N] [-Q]
+##         mikro-doc -F [-H H|-S PATH] [-O DIR] [-E] [-N] [-Q] [--open]
+##         mikro-doc -V
 ##
 ## @copyright Copyright (c) 2026 Tim Hosking
 ## @see https://github.com/munger
@@ -1222,16 +1223,17 @@ def build_endpoints_tree(sections):
 def main():
     """Main entry point: parse arguments, discover or load the schema, generate outputs."""
     parser = argparse.ArgumentParser(description="Generate RouterOS API reference docs")
-    parser.add_argument("--host", help="Router hostname/IP")
-    parser.add_argument("--user", help="Router username")
-    parser.add_argument("--pass", dest="password", help="Router password")
-    parser.add_argument("--output-dir", help="Output directory")
-    parser.add_argument("--store-credentials", action="store_true", help="Store credentials in schema.json (insecure)")
-    parser.add_argument("--schema", help="Existing schema file to regenerate docs from")
-    parser.add_argument("--endpoints", action="store_true", help="Generate hierarchical endpoints JSON")
-    parser.add_argument("--no-docs", action="store_true", help="Skip HTML/MD doc generation")
-    parser.add_argument("--no-fetch", action="store_true", help="Use existing schema instead of live discovery")
-    parser.add_argument("--quiet", action="store_true", help="Suppress progress output")
+    parser.add_argument("--version", "-V", action="version", version="mikro-doc 1.0.1")
+    parser.add_argument("--host", "-H", help="Router hostname/IP")
+    parser.add_argument("--user", "-U", help="Router username")
+    parser.add_argument("--pass", "-P", dest="password", help="Router password")
+    parser.add_argument("--output-dir", "-O", help="Output directory")
+    parser.add_argument("--store-credentials", "-C", action="store_true", help="Store credentials in schema.json (insecure)")
+    parser.add_argument("--schema", "-S", help="Existing schema file to regenerate docs from")
+    parser.add_argument("--endpoints", "-E", action="store_true", help="Generate hierarchical endpoints JSON")
+    parser.add_argument("--no-docs", "-N", action="store_true", help="Skip HTML/MD doc generation")
+    parser.add_argument("--no-fetch", "-F", action="store_true", help="Use existing schema instead of live discovery")
+    parser.add_argument("--quiet", "-Q", action="store_true", help="Suppress progress output")
     parser.add_argument("--open", action="store_true", help="Open generated HTML in browser")
     parser.add_argument("schema_pos", nargs="?", help="Schema file path (same as --schema)")
     args = parser.parse_args()
