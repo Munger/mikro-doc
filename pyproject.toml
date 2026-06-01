@@ -1,0 +1,36 @@
+[build-system]
+requires = ["setuptools>=64"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "mikro-doc"
+version = "1.0.0"
+description = "Generate a self-contained offline HTML API reference for RouterOS"
+readme = "README.md"
+license = {text = "MIT"}
+authors = [
+    {name = "Tim Hosking"}
+]
+keywords = ["routeros", "mikrotik", "documentation", "api"]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
+requires-python = ">=3.7"
+dependencies = [
+    "requests",
+]
+
+[project.urls]
+Homepage = "https://github.com/munger/mikro-doc"
+Source = "https://github.com/munger/mikro-doc"
+
+[project.scripts]
+mikro-doc = "mikro_doc:main"
+
+[tool.setuptools.package-data]
+mikro_doc = ["*.hints"]
+
+[tool.setuptools.packages.find]
+include = ["mikro_doc*"]
