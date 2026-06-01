@@ -1373,7 +1373,7 @@ def main():
         log.info("Done. %d KB → %s", size // 1024, html_path)
         if args.open:
             import webbrowser
-            webbrowser.open(str(html_path))
+            webbrowser.open(f"file://{html_path.resolve()}")
 
 
 if __name__ == "__main__":
