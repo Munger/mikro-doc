@@ -1,0 +1,10 @@
+# Generated docs (contains live router data — DO NOT SHARE)
+api-reference/
+
+# Python
+__pycache__/
+*.pyc
+*.egg-info/
+
+# macOS
+.DS_Store
