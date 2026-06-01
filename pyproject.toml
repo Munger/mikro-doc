@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "mikro-doc"
-version = "1.0.1"
+version = "1.0.2"
 description = "Generate a self-contained offline HTML API reference for RouterOS"
 readme = "README.md"
 license = {text = "MIT"}
